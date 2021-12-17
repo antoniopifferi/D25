@@ -1,0 +1,81 @@
+Hete_Meas	NameFile	gGoal	gBulkMua	gBulkMus	PertMua	PertMus	gDepth	gVol	Goal	gDir	LinMua	LinMus	BulkMua	BulkMus	Depth
+76	Measure0076	A	0.08	12	0.04	12	0.5	1	lin Pmua small	ver	OK	NO	NO	NO	NO
+77	Measure0077	A	0.08	12	0.04	12	0.5	1	CROSS	hor	OK	NO	NO	NO	NO
+79	Measure0079	A	0.08	12	0.08	12	0.5	1	lin Pmua small	ver	OK	NO	NO	NO	NO
+80	Measure0080	A	0.08	12	0.08	12	0.5	1	CROSS	hor	OK	NO	NO	NO	NO
+82	Measure0082	A	0.08	12	0.16	12	0.5	1	lin Pmua small	ver	OK	NO	NO	NO	NO
+83	Measure0083	A	0.08	12	0.16	12	0.5	1	CROSS	hor	OK	NO	NO	NO	NO
+85	Measure0085	A	0.08	12	0.32	12	0.5	1	lin Pmua small	ver	OK	NO	NO	NO	NO
+86	Measure0086	A	0.08	12	0.32	12	0.5	1	CROSS	hor	OK	NO	NO	NO	NO
+88	Measure0088	A	0.08	12	0.48	12	0.5	1	lin Pmua small	ver	OK	NO	NO	NO	NO
+89	Measure0089	A	0.08	12	0.48	12	0.5	1	CROSS	hor	OK	NO	NO	NO	NO
+91	Measure0091	A	0.08	12	0.08	6	0.5	1	lin Pmusp small	ver	NO	OK	NO	NO	NO
+92	Measure0092	A	0.08	12	0.08	6	0.5	1	CROSS	hor	NO	OK	NO	NO	NO
+94	Measure0094	A	0.08	12	0.08	12	0.5	1	lin Pmusp small	ver	NO	OK	NO	NO	NO
+95	Measure0095	A	0.08	12	0.08	12	0.5	1	CROSS	hor	NO	OK	NO	NO	NO
+97	Measure0097	A	0.08	12	0.08	18	0.5	1	lin Pmusp small	ver	NO	OK	NO	NO	NO
+98	Measure0098	A	0.08	12	0.08	18	0.5	1	CROSS	hor	NO	OK	NO	NO	NO
+101	Measure0101	B	0.08	12	0.04	12	1.5	6	lin Pmua large	ver	OK	NO	NO	NO	NO
+102	Measure0102	B	0.08	12	0.04	12	1.5	6	CROSS	hor	OK	NO	NO	NO	NO
+104	Measure0104	B	0.08	12	0.08	12	1.5	6	lin Pmua large	ver	OK	NO	NO	NO	NO
+105	Measure0105	B	0.08	12	0.08	12	1.5	6	CROSS	hor	OK	NO	NO	NO	NO
+107	Measure0107	B	0.08	12	0.16	12	1.5	6	lin Pmua large	ver	OK	NO	NO	NO	NO
+108	Measure0108	B	0.08	12	0.16	12	1.5	6	CROSS	hor	OK	NO	NO	NO	NO
+110	Measure0110	B	0.08	12	0.32	12	1.5	6	lin Pmua large	ver	OK	NO	NO	NO	NO
+111	Measure0111	B	0.08	12	0.32	12	1.5	6	CROSS	hor	OK	NO	NO	NO	NO
+113	Measure0113	B	0.08	12	0.48	12	1.5	6	lin Pmua large	ver	OK	NO	NO	NO	NO
+114	Measure0114	B	0.08	12	0.48	12	1.5	6	CROSS	hor	OK	NO	NO	NO	NO
+116	Measure0116	B	0.08	12	0.08	6	1.5	6	lin Pmusp large	ver	NO	OK	NO	NO	NO
+117	Measure0117	B	0.08	12	0.08	6	1.5	6	CROSS	hor	NO	OK	NO	NO	NO
+119	Measure0119	B	0.08	12	0.08	12	1.5	6	lin Pmusp large 	ver	NO	OK	NO	NO	NO
+120	Measure0120	B	0.08	12	0.08	12	1.5	6	CROSS	hor	NO	OK	NO	NO	NO
+122	Measure0122	B	0.08	12	0.08	18	1.5	6	lin Pmusp large	ver	NO	OK	NO	NO	NO
+123	Measure0123	B	0.08	12	0.08	18	1.5	6	CROSS	hor	NO	OK	NO	NO	NO
+126	Measure0126	C	0.08	12	0.08	12	0.5	1	bulk_effect small	ver	NO	NO	OK	OK	NO
+127	Measure0127	C	0.08	12	0.08	12	0.5	1	CROSS	hor	NO	NO	OK	OK	NO
+129	Measure0129	C	0.16	12	0.08	12	0.5	1	bulk_effect small	ver	NO	NO	OK	NO	NO
+130	Measure0130	C	0.16	12	0.08	12	0.5	1	CROSS	hor	NO	NO	OK	NO	NO
+132	Measure0132	C	0.08	6	0.08	12	0.5	1	bulk_effect small	ver	NO	NO	NO	OK	NO
+133	Measure0133	C	0.08	6	0.08	12	0.5	1	CROSS	hor	NO	NO	NO	OK	NO
+135	Measure0135	C	0.08	18	0.08	12	0.5	1	bulk_effect small	ver	NO	NO	NO	OK	NO
+136	Measure0136	C	0.08	18	0.08	12	0.5	1	CROSS	hor	NO	NO	NO	OK	NO
+139	Measure0139	D	0.08	12	0.08	12	1.5	6	bulk_effect large 	ver	NO	NO	OK	OK	NO
+140	Measure0140	D	0.08	12	0.08	12	1.5	6	CROSS	hor	NO	NO	OK	OK	NO
+142	Measure0142	D	0.16	12	0.08	12	1.5	6	bulk_effect large	ver	NO	NO	OK	NO	NO
+143	Measure0143	D	0.16	12	0.08	12	1.5	6	CROSS	hor	NO	NO	OK	NO	NO
+145	Measure0145	D	0.08	6	0.08	12	1.5	6	bulk_effect large	ver	NO	NO	NO	OK	NO
+146	Measure0146	D	0.08	6	0.08	12	1.5	6	CROSS	hor	NO	NO	NO	OK	NO
+148	Measure0148	D	0.08	18	0.08	12	1.5	6	bulk_effect large	ver	NO	NO	NO	OK	NO
+149	Measure0149	D	0.08	18	0.08	12	1.5	6	CROSS	hor	NO	NO	NO	OK	NO
+152	Measure0152	E	0.08	12	0.16	12	0	1	depth_effect small	ver	NO	NO	NO	NO	OK
+153	Measure0153	E	0.08	12	0.16	12	0	1	CROSS	hor	NO	NO	NO	NO	OK
+155	Measure0155	E	0.08	12	0.16	12	0.5	1	depth_effect small	ver	NO	NO	NO	NO	OK
+156	Measure0156	E	0.08	12	0.16	12	0.5	1	CROSS	hor	NO	NO	NO	NO	OK
+158	Measure0158	E	0.08	12	0.16	12	1.5	1	depth_effect small	ver	NO	NO	NO	NO	OK
+159	Measure0159	E	0.08	12	0.16	12	1.5	1	CROSS	hor	NO	NO	NO	NO	OK
+161	Measure0161	E	0.08	12	0.16	12	2	1	depth_effect small	ver	NO	NO	NO	NO	OK
+162	Measure0162	E	0.08	12	0.16	12	2	1	CROSS	hor	NO	NO	NO	NO	OK
+164	Measure0164	E	0.08	12	0.16	12	2.5	1	depth_effect small	ver	NO	NO	NO	NO	OK
+165	Measure0165	E	0.08	12	0.16	12	2.5	1	CROSS	hor	NO	NO	NO	NO	OK
+167	Measure0167	E	0.08	12	0.16	12	3	1	depth_effect small	ver	NO	NO	NO	NO	OK
+168	Measure0168	E	0.08	12	0.16	12	3	1	CROSS	hor	NO	NO	NO	NO	OK
+170	Measure0170	E	0.08	12	0.16	12	4	1	depth_effect small	ver	NO	NO	NO	NO	OK
+171	Measure0171	E	0.08	12	0.16	12	4	1	CROSS	hor	NO	NO	NO	NO	OK
+173	Measure0173	E	0.08	12	0.16	12	4.5	1	depth_effect small	ver	NO	NO	NO	NO	OK
+174	Measure0174	E	0.08	12	0.16	12	4.5	1	CROSS	hor	NO	NO	NO	NO	OK
+177	Measure0177	F	0.08	12	0.16	12	0	6	depth_effect large	ver	NO	NO	NO	NO	OK
+178	Measure0178	F	0.08	12	0.16	12	0	6	CROSS	hor	NO	NO	NO	NO	OK
+180	Measure0180	F	0.08	12	0.16	12	0.5	6	depth_effect large	ver	NO	NO	NO	NO	OK
+181	Measure0181	F	0.08	12	0.16	12	0.5	6	CROSS	hor	NO	NO	NO	NO	OK
+183	Measure0183	F	0.08	12	0.16	12	1.5	6	depth_effect large	ver	NO	NO	NO	NO	OK
+184	Measure0184	F	0.08	12	0.16	12	1.5	6	CROSS	hor	NO	NO	NO	NO	OK
+186	Measure0186	F	0.08	12	0.16	12	2	6	depth_effect large	ver	NO	NO	NO	NO	OK
+187	Measure0187	F	0.08	12	0.16	12	2	6	CROSS	hor	NO	NO	NO	NO	OK
+189	Measure0189	F	0.08	12	0.16	12	2.5	6	depth_effect large	ver	NO	NO	NO	NO	OK
+190	Measure0190	F	0.08	12	0.16	12	2.5	6	CROSS	hor	NO	NO	NO	NO	OK
+192	Measure0192	F	0.08	12	0.16	12	3	6	depth_effect large	ver	NO	NO	NO	NO	OK
+193	Measure0193	F	0.08	12	0.16	12	3	6	CROSS	hor	NO	NO	NO	NO	OK
+195	Measure0195	F	0.08	12	0.16	12	4	6	depth_effect large	ver	NO	NO	NO	NO	OK
+196	Measure0196	F	0.08	12	0.16	12	4	6	CROSS	hor	NO	NO	NO	NO	OK
+198	Measure0198	F	0.08	12	0.16	12	4.5	6	depth_effect large	ver	NO	NO	NO	NO	OK
+199	Measure0199	F	0.08	12	0.16	12	4.5	6	CROSS	hor	NO	NO	NO	NO	OK

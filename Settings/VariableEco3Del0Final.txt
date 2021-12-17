@@ -1,0 +1,33 @@
+OldVar	NewVar	Unit	Factor	Label
+#	deltaMuaTrue	$cm^{-1}$	10	$$
+#	deltaMuaMeas	$cm^{-1}$	10	$$
+#	deltaMusTrue	$cm^{-1}$	10	$$
+#	deltaMusMeas	$cm^{-1}$	10	$$
+#	bkgMuaTrue	$cm^{-1}$	10	$$
+muaValOut	bkgMuaMeas	$cm^{-1}$	10	$$
+#	bkgMusTrue	$cm^{-1}$	10	$$
+muspValOut	bkgMusMeas	$cm^{-1}$	10	$$
+muaTrueVal	incMuaTrue	$cm^{-1}$	10	$\mu_a^{Pert}$
+muaValIn	incMuaMeas	$cm^{-1}$	10	$\tilde{\mu}_a^{Pert}$
+muspTrueVal	incMusTrue	$cm^{-1}$	10	$\mu_s'^{Pert}$
+muspValIn	incMusMeas	$cm^{-1}$	10	$\tilde{\mu}_s'^{Pert}$
+lambda	Lambda	$nm$	1	$lambda$
+INCL_VOL	incVol	$cm^3$	1	$vol$
+#	gBulkMua	$cm^{-1}$	1	$$
+#	gBulkMus	$cm^{-1}$	1	$$
+#	PertMua	$cm^{-1}$	1	$\mu_a^{Pert}$
+#	PertMus	$cm^{-1}$	1	$\mu_s'^{ Pert}$
+#	gDepth	$cm^{-1}$	1	$$
+#	gVol	$cm^3$	1	$vol$
+muaC	contrMuaMeas	$ $	1	contrast $C$
+muaCt	contrMuaTrue	$ $	1	contrast $C$
+muspC	contrMusMeas	$ $	1	contrast $C$
+muspCt	contrMusTrue	$ $	1	contrast $C$
+muaCNR	CNRMuaMeas	$ $	1	$CNR$
+muspCNR	CNRMusMeas	$ $	1	$CNR$
+muaacc	accMuaMeas	$ $	1	error $\epsilon _a$
+muspacc	accMusMeas	$ $	1	error $\epsilon _s$
+#	SL_Mua	$ $	1	$SL$
+#	SL_Mus	$ $	1	$SL$
+#	NL_Mua	$ $	1	$NL$
+#	NL_Mus	$ $	1	$NL$

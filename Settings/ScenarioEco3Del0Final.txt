@@ -1,0 +1,15 @@
+Var	View	Test	Col	Row	X	Y	Truth	Line	Ymin	Ymax	Extract1	eVal1
+Contr_Mua	Spectrum	LinMua	PertMua	TAU	Lambda	contrMuaMeas	contrMuaTrue	incVol	-2	6	TAU	0.01
+CNR_Mua	Spectrum	LinMua	PertMua	TAU	Lambda	CNRMuaMeas		incVol	-10	15	TAU	0.01
+Acc_Mua	Spectrum	LinMua	PertMua	TAU	Lambda	accMuaMeas		incVol	-2	2	TAU	0.01
+Lin_Mua	Scan	LinMua	Lambda	TAU	PertMua	incMuaMeas	incMuaTrue	incVol	-0.2	0.5	TAU	0.01
+Poly_Mua	Scan	LinMua	Lambda	TAU	PertMua	incMuaMeas	Poly_Mua	incVol	-0.2	0.5	TAU	0.01
+SL_Mua	Scan	LinMua	Lambda	TAU	PertMua	SL_Mua	One	incVol	-3.5	3.5	TAU	0.01
+NL_Mua	Scan	LinMua	Lambda	TAU	PertMua	NL_Mua	Zero	incVol	-0.6	0.6	TAU	0.01
+Contr_Mus	Spectrum	LinMus	PertMus	TAU	Lambda	contrMusMeas	contrMusTrue	incVol	-0.5	2.5	TAU	0.1
+CNR_Mus	Spectrum	LinMus	PertMus	TAU	Lambda	CNRMusMeas		incVol	-25	25	TAU	0.1
+Acc_Mus	Spectrum	LinMus	PertMus	TAU	Lambda	accMusMeas		incVol	-0.4	1.6	TAU	0.1
+Lin_Mus	Scan	LinMus	Lambda	TAU	PertMus	incMusMeas	incMusTrue	incVol	0	20	TAU	0.1
+Poly_Mus	Scan	LinMus	Lambda	TAU	PertMus	incMusMeas	Poly_Mus	incVol	0	20	TAU	0.1
+SL_Mus	Scan	LinMus	Lambda	TAU	PertMus	SL_Mus	One	incVol	-1	3	TAU	0.1
+NL_Mus	Scan	LinMus	Lambda	TAU	PertMus	NL_Mus	Zero	incVol	-0.3	0.3	TAU	0.1
