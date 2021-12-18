@@ -1,0 +1,16 @@
+PatientID	Lesion
+1	Benign
+2	Benign
+3	Benign
+4	Malignant
+5	Malignant
+6	Benign
+7	Benign
+8	Benign
+9	Malignant
+10	Malignant
+11	Benign
+12	Benign
+13	Benign
+14	Benign
+15	Malignant

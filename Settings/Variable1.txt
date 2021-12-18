@@ -1,0 +1,5 @@
+OldVar	NewVar	Unit	Factor	Label
+P	PatientID	$$		$$
+#	rad	$$		$$
+#	Mua	$cm^{-1}$	1	
+#	MuaBkg	$cm^{-1}$	1	

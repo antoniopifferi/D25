@@ -7,7 +7,7 @@ Created on Tue Jul 20 09:18:29 2021
 from numpy import *
 #from scipy import *
 import matplotlib
-matplotlib.rcParams['text.usetex'] = True
+#matplotlib.rcParams['text.usetex'] = True
 from matplotlib.pyplot import *
 from pandas import *
 from matplotlib.backends.backend_pdf import PdfPages
@@ -15,91 +15,75 @@ import matplotlib.ticker as ticker
 close("all")
 
 # PARAMETERS
-PATH_D48='C:\\OneDrivePolimi\\OneDrive - Politecnico di Milano\\Beta\\Projects\\Open\\SOLUS\\Deliverable\\D48\\'
+PATH_MAIN='C:\\OneDrivePolimi\\OneDrive - Politecnico di Milano\\Beta\\Projects\\Open\\SOLUS\\Deliverable\\D25\\'
 PATH_DATA='Data\\'
 PATH_RESULTS='Results\\'
 PATH_SETTINGS='Settings\\'
 
-FILE_DATA='_Ecoflex_FoM_reconstructed_Gate.txt'
-FILE_LABBOOK='LabbookEco3Del0Final.txt'
-FILE_SCENARIO='ScenarioEco3Del0Final.txt'
-FILE_VARIABLE='VariableEco3Del0Final.txt'
+FILE_DATA_Bkg='bulkDB.xlsx'
+FILE_DATA_Contr='contrastDB.xlsx'
+FILE_DATA_Inc='lesionDB.xlsx'
+FILE_LABBOOK='Labbook1.txt'
+FILE_SCENARIO='Scenario1.txt'
+FILE_VARIABLE='Variable1.txt'
 
-# FILE_DATA='_Meat_FoM_spectral_reconcurves_fromSpectralFit2_.txt'
-# FILE_LABBOOK='LabbookMeat3.txt'
-# FILE_SCENARIO='ScenarioMeat3.txt'
-# FILE_VARIABLE='VariableMeat3.txt'
 
 FIGWIDTH=15
-aOpt=['Mua','Mus']
-DMua0=0.1 # default value to estimate non-lin (working point: 'x' in def of 'SL' D4.8)
-DxMua0=1 # default value to estimate non-lin ADIMENSIONAL!!! (delta step: 'Dx' in def of 'NL' D4.8)
-DMus0=1 # default value to estimate non-lin (working point: 'x' in def of 'SL' D4.8)
-DxMus0=1 # default value to estimate non-lin (delta step: 'Dx' in def of 'NL' D4.8)
+fLambda=['l1','l2','l3','l4','l5','l6','l7','l8']
+fComp=['Hb','HbO2','Lipid','H2O','Coll','a','b']
 SAVE_FIG=True
-SUP_TITLE=False
+SUP_TITLE=True
 ASPECT_RATIO=True
-#subLambda=[930, 970, 1020, 1050]
-#subLambda=[640, 675, 830, 905]
 
 # LOAD
-Data=read_csv(PATH_D48+PATH_DATA+FILE_DATA,sep='\t',index_col=False)
-Labbook=read_csv(PATH_D48+PATH_SETTINGS+FILE_LABBOOK,sep='\t')
-Scenario=read_csv(PATH_D48+PATH_SETTINGS+FILE_SCENARIO,sep='\t')  
-Variable=read_csv(PATH_D48+PATH_SETTINGS+FILE_VARIABLE,sep='\t')  
+DataBkg=pandas.read_excel(PATH_MAIN+PATH_DATA+FILE_DATA_Bkg,sheet_name='Sheet1')
+DataContr=pandas.read_excel(PATH_MAIN+PATH_DATA+FILE_DATA_Contr,sheet_name='Sheet1')
+DataInc=pandas.read_excel(PATH_MAIN+PATH_DATA+FILE_DATA_Inc,sheet_name='Sheet1')
 
-# COMPLETE DATA
+Labbook=read_csv(PATH_MAIN+PATH_SETTINGS+FILE_LABBOOK,sep='\t')
+Scenario=read_csv(PATH_MAIN+PATH_SETTINGS+FILE_SCENARIO,sep='\t')  
+Variable=read_csv(PATH_MAIN+PATH_SETTINGS+FILE_VARIABLE,sep='\t')  
+
+# # COMPLETE DATA
+id_vars=[item for item in DataBkg.columns if item not in fLambda]
+DataBkg=DataBkg.melt(id_vars=id_vars,value_vars=fLambda,var_name='Lambda',value_name='MuaBkg')
+id_vars=[item for item in DataBkg.columns if item not in fComp]
+DataBkg=DataBkg.melt(id_vars=id_vars,value_vars=fComp,var_name='Comp',value_name='ConcBkg')
+id_vars=[item for item in DataContr.columns if item not in fLambda]
+DataContr=DataContr.melt(id_vars=id_vars,value_vars=fLambda,var_name='Lambda',value_name='MuaContr')
+id_vars=[item for item in DataContr.columns if item not in fComp]
+DataContr=DataContr.melt(id_vars=id_vars,value_vars=fComp,var_name='Comp',value_name='ConcContr')
+id_vars=[item for item in DataInc.columns if item not in fLambda]
+DataInc=DataInc.melt(id_vars=id_vars,value_vars=fLambda,var_name='Lambda',value_name='MuaInc')
+id_vars=[item for item in DataInc.columns if item not in fComp]
+DataInc=DataInc.melt(id_vars=id_vars,value_vars=fComp,var_name='Comp',value_name='ConcInc')
+
+# Data=concat([DataBkg,DataContr,DataInc],ignore_index=True,sort=False)
+Data=merge(DataBkg,DataContr)
+Data=merge(Data,DataInc)
+Data.fillna(value=0,inplace=True)
+#Data.index.name='Var'
+#Data.reset_index(inplace=True)
+# Data=concat([DataBkg,DataContrast,DataInc],ignore_index=True,sort=False)
+# id_vars=[item for item in Data.columns if item not in fLambda]
+# Data=Data.melt(id_vars=id_vars,value_vars=fLambda,var_name='Lambda',value_name='Mua')
+# id_vars=[item for item in Data.columns if item not in fComp]
+# Data=Data.melt(id_vars=id_vars,value_vars=fComp,var_name='Comp',value_name='Conc')
 Variable.Label.fillna(Variable.NewVar,inplace=True)
 dcVariable=dict(zip(Variable.OldVar, Variable.NewVar))
 dcUnit=dict(zip(Variable.NewVar, Variable.Unit))
 dcLabel=dict(zip(Variable.NewVar, Variable.Label))
 Data.rename(columns=dcVariable,inplace=True)
-Data = Data.merge(Labbook, on='Hete_Meas')
-#Data.drop(Data.loc[Data['Lambda'].isin(subLambda)].index, inplace=True)
+Data = Data.merge(Labbook, on='PatientID')
+Data['ViewBkg']=Data['hete']+"_"+Data['homo']
 
-# CALC VARIABLES
-Data['bkgMuaTrue']=1/(1+Data['contrMuaTrue'])*Data['incMuaTrue'] # TRUE BKG MUA
-Data['deltaMuaTrue']=Data['contrMuaTrue']*Data['bkgMuaTrue'] # TRUE DELTA MUA
-Data['deltaMuaMeas']=Data['contrMuaMeas']*Data['bkgMuaMeas'] # MEAS DELTA MUA
-Data['bkgMusTrue']=1/(1+Data['contrMusTrue'])*Data['incMusTrue'] # TRUE BKG MUS
-Data['deltaMusTrue']=Data['contrMusTrue']*Data['bkgMusTrue'] # TRUE DELTA MUS
-Data['deltaMusMeas']=Data['contrMusMeas']*Data['bkgMusMeas'] # MEAS DELTA MUS
-Data['SL_Mua']=0
-Data['NL_Mua']=0
-Data['Poly_Mua']=0
-Data['SL_Mus']=0
-Data['NL_Mus']=0
-Data['Poly_Mus']=0
-Data['One']=1.0
-Data['Zero']=0.0
-for var,fact in zip(Variable[Variable.Factor>0].NewVar,Variable[Variable.Factor>0].Factor): Data[var]=Data[var]*fact
-# calc non-linearity
-for oO in aOpt:
-    DataE = Data[Data.LinMua=='OK'] if oO=='Mua' else Data[Data.LinMus=='OK']
-    gamma = DMua0 if oO=='Mua' else DMus0
-    Dx = DxMua0 if oO=='Mua' else DxMus0
-    
-    for ot in DataE.TAU.unique():
-        for ol in DataE.Lambda.unique():
-            for ov in DataE.incVol.unique():
-                DataEE=DataE[(DataE.TAU==ot) & (DataE.Lambda==ol) & (DataE.incVol==ov)]
-                x = DataEE.PertMua/gamma if oO=='Mua' else DataEE.PertMus/gamma
-                y = DataEE.incMuaMeas/gamma if oO=='Mua' else DataEE.incMusMeas/gamma
-                [a,b,c]=polyfit(x, y, 2)
-                SL=2*a*x+b
-                #NL=2*a
-                NL=2*a/b*Dx
-                polyF=gamma*(a*x**2+b*x+c)
-                if oO=='Mua':
-                    DataEE.SL_Mua=SL
-                    DataEE.NL_Mua=NL
-                    DataEE.Poly_Mua=polyF
-                    Data[(Data.LinMua=='OK')&(DataE.TAU==ot)&(DataE.Lambda==ol)&(DataE.incVol==ov)]=DataEE.copy()
-                else:            
-                    DataEE.SL_Mus=SL
-                    DataEE.NL_Mus=NL
-                    DataEE.Poly_Mus=polyF
-                    Data[(Data.LinMus=='OK')&(DataE.TAU==ot)&(DataE.Lambda==ol)&(DataE.incVol==ov)]=DataEE.copy()
+
+# # CALC VARIABLES
+# for var,fact in zip(Variable[Variable.Factor>0].NewVar,Variable[Variable.Factor>0].Factor): Data[var]=Data[var]*fact
+# Data['BkgMua']=''
+# Data[Data['Var']=='Inc']['BkgMua']=Data[Data['Var']=='Inc']['Mua']
+# Data[Data['Var']=='Inc'].loc[:,'BkgMua']=Data[Data['Var']=='Inc'].loc[:,'Mua']
+
 # PLOT
 for i,s in Scenario.iterrows(): # iterate over the whole Scenario
     
@@ -107,26 +91,34 @@ for i,s in Scenario.iterrows(): # iterate over the whole Scenario
     if notnull(s.Truth): Data[s.Truth+'1']=Data[s.Truth]
     DataE=Data
     if notnull(s.Extract1): DataE=DataE[DataE[s.Extract1]==s.eVal1]
-    aCol=DataE[DataE[s.Test]=='OK'][s.Col].unique()
-    aRow=DataE[DataE[s.Test]=='OK'][s.Row].unique()    
-    Name=s.Var+"_"+s.View+"_"+s.Test
+    # aCol=DataE[DataE[s.Test]=='OK'][s.Col].unique()
+    # aRow=DataE[DataE[s.Test]=='OK'][s.Row].unique()    
+    aCol=DataE[s.Col].unique()
+    aRow=DataE[s.Row].unique()    
+    Name=s.Var+"_"+s.View
 
     #do plot
     nRow=len(aRow)
     nCol=len(aCol)
     aRatio = (nRow+0.5)/(nCol+1) if ASPECT_RATIO else 9/16
     figwidth = FIGWIDTH*0.6 if nCol==3 else FIGWIDTH
-    figData,axs=subplots(nRow,nCol,num='Fig'+str(Name),figsize=(figwidth,aRatio*figwidth),squeeze=False)
-    if SUP_TITLE: suptitle(FILE_SCENARIO+'  #  '+FILE_DATA+'  #  '+str(Name))
+    # figData,axs=subplots(nRow,nCol,num='Fig'+str(Name),figsize=(figwidth,aRatio*figwidth),squeeze=False)
+    figData,axs=subplots(nRow,nCol,num='Fig'+str(Name),sharex=False,sharey=False,figsize=(figwidth,aRatio*figwidth),squeeze=False)
+    # subplots_adjust(hspace=0,wspace=0,left=0.09,bottom=0.09)
+    subplots_adjust(hspace=0,wspace=0,left=0,bottom=0)
+
+
+    if SUP_TITLE: suptitle(FILE_SCENARIO+'  _  '+FILE_DATA_Bkg+'  _  '+str(Name))
     for iCol,oCol in enumerate(aCol):
         for iRow,oRow in enumerate(aRow):
             axi=axs[iRow,iCol]
             sca(axi)
 
-            subData=DataE[(DataE[s.Col]==oCol)&(DataE[s.Row]==oRow)&(DataE[s.Test]=='OK')]
+            subData=DataE[(DataE[s.Col]==oCol)&(DataE[s.Row]==oRow)]
             table=subData.pivot_table(values=s.Y,index=s.X,columns=s.Line,aggfunc='mean')
-            table.style.format({'PertMua':'{0:,.0f} nm','horsepower':'{0:,.0f}hp'})
-            table.plot(ax=axi,marker='D',legend=False,xlabel=False)
+            # table.style.format({'PertMua':'{0:,.0f} nm','horsepower':'{0:,.0f}hp'})
+            # table.plot(ax=axi,marker='D',legend=False)
+            table.plot(ax=axi,marker='D',linestyle='',fillstyle='none',legend=False)
             if((iCol==0)and(iRow==0)): legend()
             if notnull(s.Truth): truth=subData.pivot_table(values=s.Truth+'1',index=s.X,columns=s.Line,aggfunc='mean')
             if notnull(s.Truth): truth.plot(ax=axi,marker='',color='black',legend=False)
@@ -146,4 +138,4 @@ for i,s in Scenario.iterrows(): # iterate over the whole Scenario
             
     figData.tight_layout()
     show()
-    if SAVE_FIG: figData.savefig(PATH_D48+PATH_RESULTS+'Fig_'+str(Name)+'.jpg',format='jpg')
+    if SAVE_FIG: figData.savefig(PATH_MAIN+PATH_RESULTS+'Fig_'+str(Name)+'.jpg',format='jpg')
