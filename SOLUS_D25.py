@@ -133,7 +133,7 @@ for i,s in Scenario.iterrows(): # iterate over the whole Scenario
             if iCol==0: gca().set_ylabel(yLab)
             if iRow==(nRow-1): gca().set_xlabel(xLab)           
             if iRow==0: gca().set_title(cLab)
-            #if iCol==(nCol-1): gca().twinx().set_ylabel(rLab)
+            if iCol==(nCol-1): gca().twinx().set_ylabel(rLab)
             
             
     figData.tight_layout()
