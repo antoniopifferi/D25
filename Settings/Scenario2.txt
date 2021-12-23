@@ -1,0 +1,9 @@
+Var	View	Col	Row	X	Y	Truth	Line	Ymin	Ymax	Extract1	eVal1
+MuaDelta	mRad	Lambda	rad	MuaBkg	MuaDelta		Lesion				
+ConcDelta	mRad	Comp	rad	ConcBkg	ConcDelta		Lesion				
+MuaDelta	mRad	Lambda	rad	MuaBkg	MuaDelta		Lesion				
+ConcDelta	mRad	Comp	rad	ConcBkg	ConcDelta		Lesion				
+MuaContr	mRad	Lambda	rad	MuaBkg	MuaContr		Lesion				
+ConcContr	mRad	Comp	rad	ConcBkg	ConcContr		Lesion				
+MuaContr	mViewBkg	Lambda	ViewBkg	MuaBkg	MuaContr		Lesion				
+ConcContr	mViewBkg	Comp	ViewBkg	ConcBkg	ConcContr		Lesion				

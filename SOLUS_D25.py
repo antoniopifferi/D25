@@ -24,13 +24,15 @@ FILE_DATA_Bkg='bulkDB.xlsx'
 FILE_DATA_Contr='contrastDB.xlsx'
 FILE_DATA_Inc='lesionDB.xlsx'
 FILE_LABBOOK='Labbook1.txt'
-FILE_SCENARIO='Scenario1.txt'
+FILE_SCENARIO='Scenario3.txt'
 FILE_VARIABLE='Variable1.txt'
 
 
 FIGWIDTH=15
 fLambda=['l1','l2','l3','l4','l5','l6','l7','l8']
+fLambda0=[640,675,830,905,930,970,1020,1050]
 fComp=['Hb','HbO2','Lipid','H2O','Coll','a','b']
+LesionType=['Benign','Malignant']
 SAVE_FIG=True
 SUP_TITLE=True
 ASPECT_RATIO=True
@@ -73,9 +75,13 @@ Variable.Label.fillna(Variable.NewVar,inplace=True)
 dcVariable=dict(zip(Variable.OldVar, Variable.NewVar))
 dcUnit=dict(zip(Variable.NewVar, Variable.Unit))
 dcLabel=dict(zip(Variable.NewVar, Variable.Label))
+dcLambda=dict(zip(fLambda,fLambda0))
 Data.rename(columns=dcVariable,inplace=True)
 Data = Data.merge(Labbook, on='PatientID')
 Data['ViewBkg']=Data['hete']+"_"+Data['homo']
+Data['MuaDelta']=Data['MuaInc']-Data['MuaBkg']
+Data['ConcDelta']=Data['ConcInc']-Data['ConcBkg']
+Data['Lambda'].replace(to_replace=fLambda,value=fLambda0,inplace=True)
 
 
 # # CALC VARIABLES
@@ -116,10 +122,21 @@ for i,s in Scenario.iterrows(): # iterate over the whole Scenario
 
             subData=DataE[(DataE[s.Col]==oCol)&(DataE[s.Row]==oRow)]
             table=subData.pivot_table(values=s.Y,index=s.X,columns=s.Line,aggfunc='mean')
+            dataX=subData.pivot_table(values=s.X,index='PatientID',aggfunc='mean').reset_index()
+            dataY=subData.pivot_table(values=s.Y,index='PatientID',columns=s.Line,aggfunc='mean').reset_index()
+            dataY0=subData.pivot_table(values=s.Y,index='PatientID',aggfunc='mean').reset_index()
+            dataXY=merge(dataX,dataY,on='PatientID')
+            dataXY.replace(to_replace=0, value='')
+            table.replace(to_replace=0, value='')
             # table.style.format({'PertMua':'{0:,.0f} nm','horsepower':'{0:,.0f}hp'})
             # table.plot(ax=axi,marker='D',legend=False)
             table.plot(ax=axi,marker='D',linestyle='',fillstyle='none',legend=False)
-            if((iCol==0)and(iRow==0)): legend()
+            # dataXY.plot(x=s.X,y=LesionType,ax=axi,marker='D',linestyle='',fillstyle='none',legend=False)
+            # for i in arange(14):
+                # matplotlib.pyplot.annotate(str(dataXY['PatientID'][i]),(dataX[s.X][i],dataY0[s.Y][i]))
+                # matplotlib.pyplot.annotate('hello',(0.1,0.1))
+            # plot(dataX[LesionType],dataY[LesionType],'D')
+            if((iCol==0)and(iRow==1)): legend()
             if notnull(s.Truth): truth=subData.pivot_table(values=s.Truth+'1',index=s.X,columns=s.Line,aggfunc='mean')
             if notnull(s.Truth): truth.plot(ax=axi,marker='',color='black',legend=False)
             if notnull(s.Ymin): gca().set_ylim([s.Ymin,s.Ymax]) # check if there is any value, including 0, otherwise leave autoscale
@@ -133,7 +150,7 @@ for i,s in Scenario.iterrows(): # iterate over the whole Scenario
             if iCol==0: gca().set_ylabel(yLab)
             if iRow==(nRow-1): gca().set_xlabel(xLab)           
             if iRow==0: gca().set_title(cLab)
-            if iCol==(nCol-1): gca().twinx().set_ylabel(rLab)
+            # if iCol==(nCol-1): gca().twinx().set_ylabel(rLab)
             
             
     figData.tight_layout()
